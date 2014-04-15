@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Bootstrap, from Twitter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="../assets/ico/favicon.png">
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse ">
+      <div class="navbar-inner"> 
+            <a  class="brand"  href="herophp.php">Mis Pedidos por Cobrar o Cancelar</a>
+            <a  class="brand"  href="hero.html">Mis historial de facturas </a>
+            <a  class="brand"  href="herophp.php">Registro Usuarios</a>
+            <a   class="brand"  href="logout.php"> Salir</a>
+              
+            
+          
+        </div>
+      
+    </div>
+    <div class="container">
+    <h1>Caja </h1>
+
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="hero-unit">
+        <div class="well">
+          <a class="btn" href="">Nuevo</a>
+          <a class="btn" href="">Modificar</a> <input class="btn" type="submit"
+          value="Eliminar"> 
+          Desde
+            <div id="datetimepicker1" class="input-append date">
+            <input data-format="dd/MM/yyyy hh:mm:ss" type="text"></input>
+            <span class="add-on">
+            <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+            </i>
+            </span>
+          </div>
+
+          Hasta
+           <div id="datetimepicker1" class="input-append date">
+            <input data-format="dd/MM/yyyy hh:mm:ss" type="text"></input>
+            <span class="add-on">
+            <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+            </i>
+            </span>
+          </div>
+
+          
+          <script type="text/javascript">
+            $(function() {
+              $('#datetimepicker1').datetimepicker({
+                language: 'pt-BR'
+              });
+            });
+          </script>
+
+
+        </div>
+
+        <div class="well">
+          <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+              <!--<button type="submit" class="btn btn-default">Buscar</button>-->
+              <input type="text" class="form-control" placeholder="Buscar">
+            
+          </form>
+          En:
+          <select class="selectpicker">
+            <option>Mustard</option>
+            <option>Ketchup</option>
+            <option>Relish</option>
+          </select>
+           </div>
+        </div>
+
+
+        <table class="table table-striped table-bordered">
+          <thead>  
+          <tr>  
+            <th>Código</th>  
+            <th>Tipo</th>  
+            <th>Concepto</th>  
+            <th>Cliente</th>  
+            <th>Monto</th>
+            <th>Fecha</th>
+          </tr>  
+        </thead>  
+        <tbody>  
+          <tr>  
+            <td>001</td>  
+            <td>bebida </td>  
+            <td>gaseosa</td>
+            <td>cliente</td>    
+            <td>3</td>
+            <td>03/04/2013</td>    
+          </tr>  
+          <tr>  
+            <td>001</td>  
+            <td>bebida </td>  
+            <td>gaseosa</td>
+            <td>cliente</td>    
+            <td>3</td>
+            <td>03/04/2013</td>    
+          </tr>  
+          <tr>  
+            <td>001</td>  
+            <td>bebida </td>  
+            <td>gaseosa</td>
+            <td>cliente</td>    
+            <td>3</td>
+            <td>03/04/2013</td>    
+          </tr>  
+
+ 
+        </tbody>  
+        </table>
+
+      </div>
+
+      <!-- Example row of columns -->
+
+      <hr>
+
+      <footer>
+        <p></p>
+      </footer>
+
+    </div> <!-- /container -->
+
+
+
+
+
+
+
+
+
+
+
+    <?php
+    // Make a MySQL Connection
+    $concc=mysql_connect("localhost", "DSproy", "DSproy") or die(mysql_error());
+    mysql_select_db("puntoblanco") or die(mysql_error());
+    if(! $concc )
+    {
+      die('Could not connect: ' . mysql_error());
+    }
+    // Get all the data from the "example" table
+    $result = mysql_query("SELECT * FROM comanda") 
+    or die(mysql_error());  
+
+    echo "<table border='1'>";
+    echo "<tr> <th>NumCom</th> <th>CodPer</th> <th>NumMesa</th> </tr>";
+    // keeps getting the next row until there are no more to get
+    while($row = mysql_fetch_array( $result )) {
+      // Print out the contents of each row into a table
+      echo "<tr><td>"; 
+      echo $row['NumCom'];
+      echo "</td><td>"; 
+      echo $row['CodPer'];
+      echo "</td></td>"; 
+      echo $row['NumMesa'];
+      echo "</td></tr>"; 
+    } 
+
+    echo "</table>";
+    ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../assets/js/jquery.js"></script>
+    <script src="../assets/js/bootstrap-transition.js"></script>
+    <script src="../assets/js/bootstrap-alert.js"></script>
+    <script src="../assets/js/bootstrap-modal.js"></script>
+    <script src="../assets/js/bootstrap-dropdown.js"></script>
+    <script src="../assets/js/bootstrap-scrollspy.js"></script>
+    <script src="../assets/js/bootstrap-tab.js"></script>
+    <script src="../assets/js/bootstrap-tooltip.js"></script>
+    <script src="../assets/js/bootstrap-popover.js"></script>
+    <script src="../assets/js/bootstrap-button.js"></script>
+    <script src="../assets/js/bootstrap-collapse.js"></script>
+    <script src="../assets/js/bootstrap-carousel.js"></script>
+    <script src="../assets/js/bootstrap-typeahead.js"></script>
+
+  </body>
+</html>
